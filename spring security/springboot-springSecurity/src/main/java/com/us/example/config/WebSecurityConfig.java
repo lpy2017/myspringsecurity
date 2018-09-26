@@ -63,8 +63,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     	.and()
     	
         .authorizeRequests()
+			//.antMatchers  有先后顺序，前面有配置的就生效
                 .antMatchers("/signup").permitAll()
-                .antMatchers("/css/**.*").permitAll()
+                .antMatchers("/css/**.*").permitAll()// **包含css 下的多级目录  * 只是该层级
                 .anyRequest().access("@mySecurity.check(authentication,request)")
 //                .anyRequest().authenticated() //任何请求,登录后可以访问
 //                .anyRequest().authenticated().accessDecisionManager(new MyAccessDecisionManager())
